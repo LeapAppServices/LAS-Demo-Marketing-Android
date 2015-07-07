@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Marketing</string>
+
+    <string name="trigger_event">Trigger Event</string>
+    <string name="hint_event">Event</string>
+    <string name="action_test_mode">Test Mode</string>
+</resources>
