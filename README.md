@@ -1,8 +1,8 @@
-# LAS-Demo-Marketing-Android
+# LeapCloud-Demo-Marketing-Android
 
 ## Overview
 
-Auth is a sample of LAS SDK, and it relies on the basic module of LAS. This app shows the third-party operation based on LAS SDK.
+Auth is a sample of LeapCloud SDK, and it relies on the basic module of LeapCloud. This app shows the third-party operation based on LeapCloud SDK.
 
 
 ## Effect
@@ -11,9 +11,9 @@ Auth is a sample of LAS SDK, and it relies on the basic module of LAS. This app 
 
 ## How to Use
 
-1. Open Android Studio or IDEA, click `File -> Open `, select and import `setting.gradle`. 
-2. Open `App.java` and replace the defined constants with your own `APP Id` and `API KEY`. 
-3. Config the Marketing message on console after the app is totally closed off, then you can check the matched messages on opening the app. 
+1. Open Android Studio or IDEA, click `File -> Open `, select and import `setting.gradle`.
+2. Open `App.java` and replace the defined constants with your own `APP Id` and `API KEY`.
+3. Config the Marketing message on console after the app is totally closed off, then you can check the matched messages on opening the app.
 4. You can get the list of all messages pulled from server by tapping the  `Test Mode` on ActionBar.
 
 ## Customize
@@ -24,17 +24,17 @@ Auth is a sample of LAS SDK, and it relies on the basic module of LAS. This app 
 
 1. The Activity that requires Marketing messages must be inherited from FragmentActivity.
 
-2. Invoke following code in `onResume()` 
+2. Invoke following code in `onResume()`
 
 ```java
-LASMarketing.setInAppMessageDisplayActivity(this);`。
+LCMarketing.setInAppMessageDisplayActivity(this);`。
 ```
 
 #### Close Marketing Message
 
 ```java
-LASMarketing.dismissCurrentInAppMessage();
-LASMarketing.clearInAppMessageDisplayActivity();
+LCMarketing.dismissCurrentInAppMessage();
+LCMarketing.clearInAppMessageDisplayActivity();
 ```
 
 #### Open Test Mode
@@ -50,7 +50,7 @@ Add following code in `AndroidManifest.xml`
 Invoke following code to open test mode
 
 ```java
-LASMarketing.openTestMode(this);
+LCMarketing.openTestMode(this);
 ```
 
 #### Config Close Button
@@ -58,13 +58,13 @@ LASMarketing.openTestMode(this);
 The Close button is on the right side by default. You can add following code to set it on the left
 
 ```java
-LASMarketing.setInAppDismissButtonLocation(LASMarketing.InAppMessageDismissButtonLocation.LEFT);
+LCMarketing.setInAppDismissButtonLocation(LCMarketing.InAppMessageDismissButtonLocation.LEFT);
 ```
 
 If you are not satisfied with the display effect of Close button, you can add following code to disable it
 
 ```java
-LASMarketing.setInAppMessageDismissButtonImage(bitmap);
+LCMarketing.setInAppMessageDismissButtonImage(bitmap);
 ```
 
 ### Push
@@ -133,7 +133,7 @@ SDK will use the app icon as the notification icon by default if there's no conf
 PushReceiver is used to handle Push messages and show Notifications.
 
 ```xml
-<receiver android:name="as.leap.LASPushBroadcastReceiver" android:exported="false">
+<receiver android:name="as.leap.LCPushBroadcastReceiver" android:exported="false">
     <intent-filter>
         <action android:name="as.leap.push.intent.RECEIVE"/>
         <action android:name="as.leap.push.intent.OPEN"/>
@@ -143,7 +143,7 @@ PushReceiver is used to handle Push messages and show Notifications.
 
 #### Customize PushReceiver
 
-If you are not satisfied with the default PushReceiver, you can customize it to replace the default one by inheriting LASPushBroadcastReceiver. 
+If you are not satisfied with the default PushReceiver, you can customize it to replace the default one by inheriting LeapCloudPushBroadcastReceiver. 
 
 AndroidManifest.xml
 
@@ -161,7 +161,7 @@ AndroidManifest.xml
 Java
 
 ```java
-public class CustomPushReceiver extends LASPushBroadcastReceiver {
+public class CustomPushReceiver extends LeapCloudPushBroadcastReceiver {
 }
 ```
 
@@ -174,13 +174,13 @@ You can override the parent class's methods to customize the handling behavior o
 protected Class<? extends Activity> getActivity(Intent intent)
 ```
 
-After returns with non-null value, it will jump to the certian Activity if tapped on the Notification. You can get the information that Push carries in that Activity with `getIntent()` 
+After returns with non-null value, it will jump to the certian Activity if tapped on the Notification. You can get the information that Push carries in that Activity with `getIntent()`
 
 ```java
 Intent intent = getIntent();
 if (intent != null && intent.getExtras() != null) {
     for (String key : intent.getExtras().keySet()) {
-        LASLog.i(TAG, key + " = " + intent.getStringExtra(key));
+        LeapCloudLog.i(TAG, key + " = " + intent.getStringExtra(key));
     }
 }
 ```

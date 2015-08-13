@@ -1,12 +1,12 @@
-# LAS-Demo-Marketing-Android
+# LeapCloud-Demo-Marketing-Android
 
 ## 简介
 
-Auth 是 LAS SDK 的一个 Sample，该项目依赖于 LAS 的基础模块。通过该应用你可以学习和了解 基于 LAS SDK 的第三方操作。
+Auth 是 LeapCloud SDK 的一个 Sample，该项目依赖于 LeapCloud 的基础模块。通过该应用你可以学习和了解基于 LeapCloud SDK 的第三方操作。
 
 ## 效果
 
-![capture](capture/marketing.gif)
+![capture](../../capture/marketing.gif)
 
 ## 使用
 
@@ -26,14 +26,14 @@ Auth 是 LAS SDK 的一个 Sample，该项目依赖于 LAS 的基础模块。通
 2. 在 `onResume()` 中调用
 
 ```java
-LASMarketing.setInAppMessageDisplayActivity(this);`。
+LCMarketing.setInAppMessageDisplayActivity(this);`。
 ```
 
 #### 关闭 Marketing 消息
 
 ```java
-LASMarketing.dismissCurrentInAppMessage();
-LASMarketing.clearInAppMessageDisplayActivity();
+LCMarketing.dismissCurrentInAppMessage();
+LCMarketing.clearInAppMessageDisplayActivity();
 ```
 
 #### 打开测试模式
@@ -49,7 +49,7 @@ LASMarketing.clearInAppMessageDisplayActivity();
 在需要打开测试模式时调用如下代码
 
 ```java
-LASMarketing.openTestMode(this);
+LCMarketing.openTestMode(this);
 ```
 
 #### 配置关闭按钮
@@ -57,13 +57,13 @@ LASMarketing.openTestMode(this);
 默认关闭按钮显示在右边，如果需要更改到左边，可以添加如下代码
 
 ```java
-LASMarketing.setInAppDismissButtonLocation(LASMarketing.InAppMessageDismissButtonLocation.LEFT);
+LCMarketing.setInAppDismissButtonLocation(LCMarketing.InAppMessageDismissButtonLocation.LEFT);
 ```
 
 如果对默认的关闭按钮的显示效果不满意，也可以使用如下代码自定义关闭按钮
 
 ```java
-LASMarketing.setInAppMessageDismissButtonImage(bitmap);
+LCMarketing.setInAppMessageDismissButtonImage(bitmap);
 ```
 
 ### Push
@@ -132,7 +132,7 @@ LASMarketing.setInAppMessageDismissButtonImage(bitmap);
 PushReceiver 用于处理 Push 消息及显示 Notification
 
 ```xml
-<receiver android:name="as.leap.LASPushBroadcastReceiver" android:exported="false">
+<receiver android:name="as.leap.LCPushBroadcastReceiver" android:exported="false">
     <intent-filter>
         <action android:name="as.leap.push.intent.RECEIVE"/>
         <action android:name="as.leap.push.intent.OPEN"/>
@@ -142,7 +142,7 @@ PushReceiver 用于处理 Push 消息及显示 Notification
 
 #### 自定义 PushReceiver
 
-如果觉得默认的 PushReceiver 无法满足你的要求，可以继承 LASPushBroadcastReceiver，使用你自定义的 PushReceiver 来替换 SDK 默认的 Receiver。
+如果觉得默认的 PushReceiver 无法满足你的要求，可以继承 LCPushBroadcastReceiver，使用你自定义的 PushReceiver 来替换 SDK 默认的 Receiver。
 
 AndroidManifest.xml
 
@@ -160,7 +160,7 @@ AndroidManifest.xml
 Java
 
 ```java
-public class CustomPushReceiver extends LASPushBroadcastReceiver {
+public class CustomPushReceiver extends LCPushBroadcastReceiver {
 }
 ```
 
@@ -178,7 +178,7 @@ protected Class<? extends Activity> getActivity(Intent intent)
 Intent intent = getIntent();
 if (intent != null && intent.getExtras() != null) {
     for (String key : intent.getExtras().keySet()) {
-        LASLog.i(TAG, key + " = " + intent.getStringExtra(key));
+        LCLog.i(TAG, key + " = " + intent.getStringExtra(key));
     }
 }
 ```
