@@ -9,9 +9,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
-import as.leap.LASAnalytics;
-import as.leap.LASLog;
-import as.leap.LASMarketing;
+import as.leap.LCAnalytics;
+import as.leap.LCLog;
+import as.leap.LCMarketing;
+
 
 public class InAppMessageActivity extends AppCompatActivity {
 
@@ -28,18 +29,18 @@ public class InAppMessageActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String event = eventEditText.getText().toString();
                 if (TextUtils.isEmpty(event)) {
-                    LASLog.t("event cannot be empty");
+                    LCLog.t("Event cannot be empty");
                     return;
                 }
-                LASAnalytics.logEvent(event);
-                LASLog.t("fire event " + event);
+                LCAnalytics.logEvent(event);
+                LCLog.t("Fire event " + event);
             }
         });
 
         Intent intent = getIntent();
         if (intent != null && intent.getExtras() != null) {
             for (String key : intent.getExtras().keySet()) {
-                LASLog.i(TAG, key + " = " + intent.getStringExtra(key));
+                LCLog.i(TAG, key + " = " + intent.getStringExtra(key));
             }
         }
     }
@@ -54,7 +55,7 @@ public class InAppMessageActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_test_mode:
-                LASMarketing.openTestMode(this);
+                LCMarketing.openTestMode(this);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -63,20 +64,20 @@ public class InAppMessageActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        LASMarketing.setInAppMessageDisplayActivity(this);
+        LCMarketing.setInAppMessageDisplayActivity(this);
 
-        LASAnalytics.onResume(this);
+        LCAnalytics.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        LASMarketing.dismissCurrentInAppMessage();
+        LCMarketing.dismissCurrentInAppMessage();
 
-        LASMarketing.clearInAppMessageDisplayActivity();
+        LCMarketing.clearInAppMessageDisplayActivity();
 
-        LASAnalytics.onPause(this);
+        LCAnalytics.onPause(this);
     }
 
 

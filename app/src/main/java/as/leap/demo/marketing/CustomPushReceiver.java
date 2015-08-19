@@ -7,12 +7,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 
-import as.leap.LASPushBroadcastReceiver;
+import as.leap.LCPushBroadcastReceiver;
 
-/**
- * Created by mrseasons on 2015/07/07.
- */
-public class CustomPushReceiver extends LASPushBroadcastReceiver {
+public class CustomPushReceiver extends LCPushBroadcastReceiver {
 
     @Override
     protected Class<? extends Activity> getActivity(Intent intent) {

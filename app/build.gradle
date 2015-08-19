@@ -25,5 +25,5 @@ dependencies {
     compile('com.google.android.gms:play-services:6.1.+') {
         exclude module: 'support-v4'
     }
-    compile files('libs/las-sdk-core-v0.6.jar')
+    compile files('libs/lc-sdk-core-v0.7.0.jar')
 }
