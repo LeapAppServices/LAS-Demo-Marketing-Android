@@ -43,7 +43,7 @@
 
         <!-- channel -->
         <meta-data
-            android:name="las_channel"
+            android:name="lc_channel"
             android:value="google_play" />
 
         <!--notification icon-->
