@@ -39,7 +39,7 @@
         <!-- senderId -->
         <meta-data
             android:name="com.maxleap.push.gcm_sender_id"
-            android:value="id:890404010829" />
+            android:value="id:yourSenderId" />
 
         <!-- channel -->
         <meta-data
