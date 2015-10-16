@@ -1,10 +1,11 @@
-package as.leap.demo.marketing;
+package com.maxleap.demo.marketing;
 
 import android.app.Application;
 import android.os.Bundle;
 
-import as.leap.LeapCloud;
-import as.leap.utils.ManifestInfo;
+import com.maxleap.MaxLeap;
+import com.maxleap.utils.ManifestInfo;
+
 
 public class App extends Application {
 
@@ -17,21 +18,24 @@ public class App extends Application {
 
         if (APP_ID.startsWith("Replace") || API_KEY.startsWith("Replace")) {
             throw new IllegalArgumentException("Please replace with your app id and api key first before" +
-                    "using LeapCloud SDK.");
+                    "using MaxLeap SDK.");
         }
 
         Bundle bundle = ManifestInfo.getApplicationMetaData(this);
-        String senderId = bundle.getString("as.leap.push.gcm_sender_id");
+        String senderId = bundle.getString("com.maxleap.push.gcm_sender_id");
         if (senderId == null || senderId.contains("yourSenderId")) {
             throw new IllegalArgumentException("Please replace with your sender id first before using Push.");
         }
 
 		/*
-         * Fill in this section with your LAS credentials
+         * Fill in this section with your MaxLeap credentials
 		 */
-        LeapCloud.setLogLevel(LeapCloud.LOG_LEVEL_VERBOSE);
-        LeapCloud.setMarketingEnabled(true);
-        LeapCloud.initialize(this, APP_ID, API_KEY);
+        MaxLeap.setLogLevel(MaxLeap.LOG_LEVEL_VERBOSE);
+        MaxLeap.Options options = new MaxLeap.Options();
+        options.appId = APP_ID;
+        options.clientKey = API_KEY;
+        options.marketingEnable = true;
+        MaxLeap.initialize(this, options);
     }
 
 }

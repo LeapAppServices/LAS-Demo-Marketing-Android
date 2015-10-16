@@ -1,8 +1,8 @@
-# LeapCloud-Demo-Marketing-Android
+# MaxLeap-Demo-Marketing-Android
 
 ## 简介
 
-Auth 是 LeapCloud SDK 的一个 Sample，该项目依赖于 LeapCloud 的基础模块。通过该应用你可以学习和了解基于 LeapCloud SDK 的第三方操作。
+Auth 是 MaxLeap SDK 的一个 Sample，该项目依赖于 MaxLeap 的基础模块。通过该应用你可以学习和了解基于 MaxLeap SDK 的第三方操作。
 
 ## 效果
 
@@ -26,14 +26,14 @@ Auth 是 LeapCloud SDK 的一个 Sample，该项目依赖于 LeapCloud 的基础
 2. 在 `onResume()` 中调用
 
 ```java
-LCMarketing.setInAppMessageDisplayActivity(this);`。
+MLMarketing.setInAppMessageDisplayActivity(this);`。
 ```
 
 #### 关闭 Marketing 消息
 
 ```java
-LCMarketing.dismissCurrentInAppMessage();
-LCMarketing.clearInAppMessageDisplayActivity();
+MLMarketing.dismissCurrentInAppMessage();
+MLMarketing.clearInAppMessageDisplayActivity();
 ```
 
 #### 打开测试模式
@@ -43,13 +43,13 @@ LCMarketing.clearInAppMessageDisplayActivity();
 在 `AndroidManifest.xml` 中添加如下代码
 
 ```java
-<activity android:name="as.leap.internal.marketing.TestMessageListActivity"/>
+<activity android:name="com.maxleap.internal.marketing.TestMessageListActivity"/>
 ```
 
 在需要打开测试模式时调用如下代码
 
 ```java
-LCMarketing.openTestMode(this);
+MLMarketing.openTestMode(this);
 ```
 
 #### 配置关闭按钮
@@ -57,13 +57,13 @@ LCMarketing.openTestMode(this);
 默认关闭按钮显示在右边，如果需要更改到左边，可以添加如下代码
 
 ```java
-LCMarketing.setInAppDismissButtonLocation(LCMarketing.InAppMessageDismissButtonLocation.LEFT);
+MLMarketing.setInAppDismissButtonLocation(MLMarketing.InAppMessageDismissButtonLocation.LEFT);
 ```
 
 如果对默认的关闭按钮的显示效果不满意，也可以使用如下代码自定义关闭按钮
 
 ```java
-LCMarketing.setInAppMessageDismissButtonImage(bitmap);
+MLMarketing.setInAppMessageDismissButtonImage(bitmap);
 ```
 
 ### Push
@@ -93,7 +93,7 @@ LCMarketing.setInAppMessageDismissButtonImage(bitmap);
         android:value="@integer/google_play_services_version" />
 
     <receiver
-    android:name="as.leap.push.GcmBroadcastReceiver"
+    android:name="com.maxleap.push.GcmBroadcastReceiver"
     android:permission="com.google.android.c2dm.permission.SEND">
     <intent-filter>
         <action android:name="com.google.android.c2dm.intent.RECEIVE" />
@@ -113,7 +113,7 @@ LCMarketing.setInAppMessageDismissButtonImage(bitmap);
 
 ```xml
 <meta-data
-    android:name="as.leap.push.gcm_sender_id"
+    android:name="com.maxleap.push.gcm_sender_id"
     android:value="id:senderId01" />
 ```
 
@@ -123,7 +123,7 @@ LCMarketing.setInAppMessageDismissButtonImage(bitmap);
 
 ```xml
 <meta-data
-    android:name="as.leap.push.notification_icon"
+    android:name="com.maxleap.push.notification_icon"
     android:resource="@android:drawable/ic_dialog_alert" />
 ```
 
@@ -132,17 +132,17 @@ LCMarketing.setInAppMessageDismissButtonImage(bitmap);
 PushReceiver 用于处理 Push 消息及显示 Notification
 
 ```xml
-<receiver android:name="as.leap.LCPushBroadcastReceiver" android:exported="false">
+<receiver android:name="com.maxleap.MLPushBroadcastReceiver" android:exported="false">
     <intent-filter>
-        <action android:name="as.leap.push.intent.RECEIVE"/>
-        <action android:name="as.leap.push.intent.OPEN"/>
+        <action android:name="com.maxleap.push.intent.RECEIVE"/>
+        <action android:name="com.maxleap.push.intent.OPEN"/>
     </intent-filter>
 </receiver>
 ```
 
 #### 自定义 PushReceiver
 
-如果觉得默认的 PushReceiver 无法满足你的要求，可以继承 LCPushBroadcastReceiver，使用你自定义的 PushReceiver 来替换 SDK 默认的 Receiver。
+如果觉得默认的 PushReceiver 无法满足你的要求，可以继承 MLPushBroadcastReceiver，使用你自定义的 PushReceiver 来替换 SDK 默认的 Receiver。
 
 AndroidManifest.xml
 
@@ -151,8 +151,8 @@ AndroidManifest.xml
     android:name=".CustomPushReceiver"
     android:exported="false">
     <intent-filter>
-        <action android:name="as.leap.push.intent.RECEIVE" />
-        <action android:name="as.leap.push.intent.OPEN" />
+        <action android:name="com.maxleap.push.intent.RECEIVE" />
+        <action android:name="com.maxleap.push.intent.OPEN" />
     </intent-filter>
 </receiver>
 ```
@@ -160,7 +160,7 @@ AndroidManifest.xml
 Java
 
 ```java
-public class CustomPushReceiver extends LCPushBroadcastReceiver {
+public class CustomPushReceiver extends MLPushBroadcastReceiver {
 }
 ```
 
@@ -178,7 +178,7 @@ protected Class<? extends Activity> getActivity(Intent intent)
 Intent intent = getIntent();
 if (intent != null && intent.getExtras() != null) {
     for (String key : intent.getExtras().keySet()) {
-        LCLog.i(TAG, key + " = " + intent.getStringExtra(key));
+        MLLog.i(TAG, key + " = " + intent.getStringExtra(key));
     }
 }
 ```
@@ -209,7 +209,7 @@ protected int getSmallIconId(Context context)
 
 ```xml
 <meta-data
-    android:name="as.leap.push.notification_icon"
+    android:name="com.maxleap.push.notification_icon"
     android:resource="@android:drawable/ic_dialog_alert" />
 ```
 

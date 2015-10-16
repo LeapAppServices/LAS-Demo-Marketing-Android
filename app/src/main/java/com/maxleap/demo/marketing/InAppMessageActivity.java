@@ -1,4 +1,4 @@
-package as.leap.demo.marketing;
+package com.maxleap.demo.marketing;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,9 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
-import as.leap.LCAnalytics;
-import as.leap.LCLog;
-import as.leap.LCMarketing;
+import com.maxleap.MLAnalytics;
+import com.maxleap.MLLog;
+import com.maxleap.MLMarketing;
 
 
 public class InAppMessageActivity extends AppCompatActivity {
@@ -29,18 +29,18 @@ public class InAppMessageActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String event = eventEditText.getText().toString();
                 if (TextUtils.isEmpty(event)) {
-                    LCLog.t("Event cannot be empty");
+                    MLLog.t("Event cannot be empty");
                     return;
                 }
-                LCAnalytics.logEvent(event);
-                LCLog.t("Fire event " + event);
+                MLAnalytics.logEvent(event);
+                MLLog.t("Fire event " + event);
             }
         });
 
         Intent intent = getIntent();
         if (intent != null && intent.getExtras() != null) {
             for (String key : intent.getExtras().keySet()) {
-                LCLog.i(TAG, key + " = " + intent.getStringExtra(key));
+                MLLog.i(TAG, key + " = " + intent.getStringExtra(key));
             }
         }
     }
@@ -55,7 +55,7 @@ public class InAppMessageActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_test_mode:
-                LCMarketing.openTestMode(this);
+                MLMarketing.openTestMode(this);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -64,20 +64,20 @@ public class InAppMessageActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        LCMarketing.setInAppMessageDisplayActivity(this);
+        MLMarketing.setInAppMessageDisplayActivity(this);
 
-        LCAnalytics.onResume(this);
+        MLAnalytics.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        LCMarketing.dismissCurrentInAppMessage();
+        MLMarketing.dismissCurrentInAppMessage();
 
-        LCMarketing.clearInAppMessageDisplayActivity();
+        MLMarketing.clearInAppMessageDisplayActivity();
 
-        LCAnalytics.onPause(this);
+        MLAnalytics.onPause(this);
     }
 
 

@@ -1,4 +1,4 @@
-package as.leap.demo.marketing;
+package com.maxleap.demo.marketing;
 
 import android.app.Activity;
 import android.app.Notification;
@@ -7,9 +7,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 
-import as.leap.LCPushBroadcastReceiver;
+import com.maxleap.MLPushBroadcastReceiver;
 
-public class CustomPushReceiver extends LCPushBroadcastReceiver {
+public class CustomPushReceiver extends MLPushBroadcastReceiver {
 
     @Override
     protected Class<? extends Activity> getActivity(Intent intent) {

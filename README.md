@@ -1,8 +1,8 @@
-# LeapCloud-Demo-Marketing-Android
+# MaxLeap-Demo-Marketing-Android
 
 ## Overview
 
-Auth is a sample of LeapCloud SDK, and it relies on the basic module of LeapCloud. This app shows the third-party operation based on LeapCloud SDK.
+Auth is a sample of MaxLeap SDK, and it relies on the basic module of MaxLeap. This app shows the third-party operation based on MaxLeap SDK.
 
 
 ## Effect
@@ -27,14 +27,14 @@ Auth is a sample of LeapCloud SDK, and it relies on the basic module of LeapClou
 2. Invoke following code in `onResume()`
 
 ```java
-LCMarketing.setInAppMessageDisplayActivity(this);`。
+MLMarketing.setInAppMessageDisplayActivity(this);`。
 ```
 
 #### Close Marketing Message
 
 ```java
-LCMarketing.dismissCurrentInAppMessage();
-LCMarketing.clearInAppMessageDisplayActivity();
+MLMarketing.dismissCurrentInAppMessage();
+MLMarketing.clearInAppMessageDisplayActivity();
 ```
 
 #### Open Test Mode
@@ -50,7 +50,7 @@ Add following code in `AndroidManifest.xml`
 Invoke following code to open test mode
 
 ```java
-LCMarketing.openTestMode(this);
+MLMarketing.openTestMode(this);
 ```
 
 #### Config Close Button
@@ -58,13 +58,13 @@ LCMarketing.openTestMode(this);
 The Close button is on the right side by default. You can add following code to set it on the left
 
 ```java
-LCMarketing.setInAppDismissButtonLocation(LCMarketing.InAppMessageDismissButtonLocation.LEFT);
+MLMarketing.setInAppDismissButtonLocation(MLMarketing.InAppMessageDismissButtonLocation.LEFT);
 ```
 
 If you are not satisfied with the display effect of Close button, you can add following code to disable it
 
 ```java
-LCMarketing.setInAppMessageDismissButtonImage(bitmap);
+MLMarketing.setInAppMessageDismissButtonImage(bitmap);
 ```
 
 ### Push
@@ -94,7 +94,7 @@ You need to add following permission in `AndroidManifest.xml` before using Push
         android:value="@integer/google_play_services_version" />
 
     <receiver
-    android:name="as.leap.push.GcmBroadcastReceiver"
+    android:name="com.maxleap.push.GcmBroadcastReceiver"
     android:permission="com.google.android.c2dm.permission.SEND">
     <intent-filter>
         <action android:name="com.google.android.c2dm.intent.RECEIVE" />
@@ -114,7 +114,7 @@ Use "," to add multiple sendIDs at the same time（eg：`android:value="id:sende
 
 ```xml
 <meta-data
-    android:name="as.leap.push.gcm_sender_id"
+    android:name="com.maxleap.push.gcm_sender_id"
     android:value="id:senderId01" />
 ```
 
@@ -124,7 +124,7 @@ SDK will use the app icon as the notification icon by default if there's no conf
 
 ```xml
 <meta-data
-    android:name="as.leap.push.notification_icon"
+    android:name="com.maxleap.push.notification_icon"
     android:resource="@android:drawable/ic_dialog_alert" />
 ```
 
@@ -133,17 +133,17 @@ SDK will use the app icon as the notification icon by default if there's no conf
 PushReceiver is used to handle Push messages and show Notifications.
 
 ```xml
-<receiver android:name="as.leap.LCPushBroadcastReceiver" android:exported="false">
+<receiver android:name="com.maxleap.MLPushBroadcastReceiver" android:exported="false">
     <intent-filter>
-        <action android:name="as.leap.push.intent.RECEIVE"/>
-        <action android:name="as.leap.push.intent.OPEN"/>
+        <action android:name="com.maxleap.push.intent.RECEIVE"/>
+        <action android:name="com.maxleap.push.intent.OPEN"/>
     </intent-filter>
 </receiver>
 ```
 
 #### Customize PushReceiver
 
-If you are not satisfied with the default PushReceiver, you can customize it to replace the default one by inheriting LeapCloudPushBroadcastReceiver. 
+If you are not satisfied with the default PushReceiver, you can customize it to replace the default one by inheriting MLPushBroadcastReceiver.
 
 AndroidManifest.xml
 
@@ -152,8 +152,8 @@ AndroidManifest.xml
     android:name=".CustomPushReceiver"
     android:exported="false">
     <intent-filter>
-        <action android:name="as.leap.push.intent.RECEIVE" />
-        <action android:name="as.leap.push.intent.OPEN" />
+        <action android:name="com.maxleap.push.intent.RECEIVE" />
+        <action android:name="com.maxleap.push.intent.OPEN" />
     </intent-filter>
 </receiver>
 ```
@@ -161,7 +161,7 @@ AndroidManifest.xml
 Java
 
 ```java
-public class CustomPushReceiver extends LeapCloudPushBroadcastReceiver {
+public class CustomPushReceiver extends MLPushBroadcastReceiver {
 }
 ```
 
@@ -180,7 +180,7 @@ After returns with non-null value, it will jump to the certian Activity if tappe
 Intent intent = getIntent();
 if (intent != null && intent.getExtras() != null) {
     for (String key : intent.getExtras().keySet()) {
-        LeapCloudLog.i(TAG, key + " = " + intent.getStringExtra(key));
+        MLLog.i(TAG, key + " = " + intent.getStringExtra(key));
     }
 }
 ```
@@ -212,7 +212,7 @@ Or, config in `AndroidManifest.xml` as aforementioned
 
 ```xml
 <meta-data
-    android:name="as.leap.push.notification_icon"
+    android:name="com.maxleap.push.notification_icon"
     android:resource="@android:drawable/ic_dialog_alert" />
 ```
 
